@@ -1,0 +1,19 @@
+{
+  "name": "voomeh",
+  "version": "0.1.0",
+  "description": "A simple app for training your intuitive calculator",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonvara/voomeh.git"
+  },
+  "author": "Bonvara",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/bonvara/voomeh/issues"
+  },
+  "homepage": "https://github.com/bonvara/voomeh#readme"
+}
