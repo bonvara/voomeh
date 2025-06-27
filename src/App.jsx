@@ -1,8 +1,7 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
-import Timer from "./components/Timer";
-import ConversionFormula from "./components/ConversionFormula";
 import { Quiz } from "./components/Quiz";
+import QuizContainer from "./components/QuizContainer";
 
 function App() {
   const fromUnit = "AMD";
@@ -11,11 +10,13 @@ function App() {
 
   return (
     <>
-      <Quiz
-        fromUnit={fromUnit}
-        toUnit={toUnit}
-        conversionRate={conversionRate}
-      />
+      <QuizContainer>
+        <Quiz
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          conversionRate={conversionRate}
+        />
+      </QuizContainer>
     </>
   );
 }

@@ -47,48 +47,44 @@ export function Quiz({ fromUnit, toUnit, conversionRate }) {
   };
 
   return (
-    <div className="quiz-container">
-      <h1>Conversion Quiz</h1>
-      <h3>Train your intuitive converter</h3>
-      <div className="quiz-box">
-        <ConversionFormula
-          fromUnit={fromUnit}
-          toUnit={toUnit}
-          conversionRate={conversionRate}
-        />
-        <h2>
-          {startingValue} {fromUnit} is
-        </h2>
-        <h2>
-          <input
-            type="text"
-            ref={inputRef}
-            onKeyDown={handleKeyPress}
-            readOnly={!!feedback}
-          />{" "}
-          {toUnit}
-        </h2>
-        {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
-        {!feedback && (
-          <button className="show-answer-button" onClick={handleAnswer}>
-            Show Answer
+    <div>
+      <ConversionFormula
+        fromUnit={fromUnit}
+        toUnit={toUnit}
+        conversionRate={conversionRate}
+      />
+      <h2>
+        {startingValue} {fromUnit} is
+      </h2>
+      <h2>
+        <input
+          type="text"
+          ref={inputRef}
+          onKeyDown={handleKeyPress}
+          readOnly={!!feedback}
+        />{" "}
+        {toUnit}
+      </h2>
+      {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
+      {!feedback && (
+        <button className="show-answer-button" onClick={handleAnswer}>
+          Show Answer
+        </button>
+      )}
+      {feedback && (
+        <>
+          <div className="feedback">
+            <p>Answer:</p>
+            <p>
+              {feedback.correct} {toUnit}
+            </p>
+            <p>Accuracy: {feedback.accuracy}</p>
+          </div>
+          <button className="next-button" onClick={handleNext}>
+            Next
           </button>
-        )}
-        {feedback && (
-          <>
-            <div className="feedback">
-              <p>Answer:</p>
-              <p>
-                {feedback.correct} {toUnit}
-              </p>
-              <p>Accuracy: {feedback.accuracy}</p>
-            </div>
-            <button className="next-button" onClick={handleNext}>
-              Next
-            </button>
-          </>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
