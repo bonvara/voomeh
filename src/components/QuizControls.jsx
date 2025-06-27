@@ -1,6 +1,9 @@
 import "./QuizControls.css";
+import { getAvailableCurrencies } from "../utils/currency.js";
 
 function QuizControls() {
+  const currencies = getAvailableCurrencies();
+  
   return (
     <div className="quiz-controls">
       <div className="conversion-type-selector">
@@ -10,17 +13,19 @@ function QuizControls() {
       </div>
       <div className="unit-selectors">
         <select defaultValue="AMD">
-          <option value="RUB">RUB</option>
-          <option value="AMD">AMD</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
+          {currencies.map((currency) => (
+            <option key={currency} value={currency}>
+              {currency}
+            </option>
+          ))}
         </select>
         <span className="to-label">to</span>
         <select defaultValue="RUB">
-          <option value="RUB">RUB</option>
-          <option value="AMD">AMD</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
+          {currencies.map((currency) => (
+            <option key={currency} value={currency}>
+              {currency}
+            </option>
+          ))}
         </select>
       </div>
     </div>
