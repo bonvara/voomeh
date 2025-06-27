@@ -46,7 +46,6 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           correct: correctAnswer.toFixed(2),
           accuracy: Math.round(accuracy) + "%",
         });
-        setNumber1(Math.floor(Math.random() * 100) + 1);
       }
     }
   };
