@@ -60,7 +60,7 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
           />{" "}
           {toUnit}
         </h2>
-        <h2>Correct answer:</h2>
+        <h2>Correct:</h2>
         <h2>
           <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
           {toUnit}

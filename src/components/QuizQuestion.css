@@ -1,6 +1,19 @@
 .answer-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  text-align: right;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Override text-align for right column to keep it left-aligned */
+.answer-group h2:nth-child(2n) {
+  text-align: left;
+}
+
+.answer-group h2 {
+  margin: 0.25rem 0;
+  padding: 0.25rem;
 }
 
 .quiz-box {
@@ -121,7 +134,23 @@ button:hover {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   margin: 1rem 0;
   color: #0056b3;
+}
+
+/* Larger font for the starting value */
+.answer-group h2:first-child {
+  font-size: 2.2rem;
+}
+
+/* Larger font for the input field */
+.answer-group h2:nth-child(3) {
+  font-size: 2rem;
+}
+
+/* Larger font for the accuracy display */
+.accuracy {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
