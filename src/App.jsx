@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
+import Timer from './components/Timer';
 
 function App() {
   const fromUnit = "AMD";
@@ -18,13 +19,11 @@ function App() {
 }
 
 function Quiz({ fromUnit, toUnit, conversionRate }) {
-  const defaultTime = 7;
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [number1, setNumber1] = useState(
     () => Math.floor(Math.random() * 100) + 1
   );
-  const [timeLeft, setTimeLeft] = useState(defaultTime);
   const correctAnswer = number1 * conversionRate;
   const conversionFormula =
     conversionRate < 1
@@ -36,23 +35,6 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev > 0) return prev - 1;
-        return 0;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (timeLeft === 0) {
-      handleAnswer();
-    }
-  }, [timeLeft]);
 
   const handleAnswer = () => {
     let userAnswer = parseFloat(inputRef.current.value);
@@ -104,7 +86,9 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           />{" "}
           {toUnit}
         </h2>
-        {!feedback && <div className="timer">Time left: {timeLeft}s</div>}
+        {!feedback && (
+          <Timer defaultTime={7} onTimeUp={handleAnswer} />
+        )}
         {!feedback && (
           <button className="show-answer-button" onClick={handleAnswer}>
             Show Answer
