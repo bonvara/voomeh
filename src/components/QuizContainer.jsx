@@ -5,8 +5,9 @@ import QuizControls from "./QuizControls";
 
 function QuizContainer() {
   const fromUnit = "AMD";
-  const toUnit = "RUB";
-  const conversionRate = 0.20491803278688525;
+  //   const toUnit = "RUB";
+  const toUnit = "AMD";
+  const conversionRate = 1;
 
   return (
     <div className="quiz-container">
