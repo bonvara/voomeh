@@ -30,6 +30,7 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
   };
 
   const handleKeyPress = (e) => {
+    // TODO: fix situation when user presses enter when the timer just runs out
     if (e.key === "Enter") {
       if (!feedback) {
         handleAnswer();
