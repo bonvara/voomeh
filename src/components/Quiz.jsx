@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
-import ConversionFormula from "./ConversionFormula";
 import "./Quiz.css";
 
 export function Quiz({ fromUnit, toUnit, conversionRate }) {
@@ -48,11 +47,6 @@ export function Quiz({ fromUnit, toUnit, conversionRate }) {
 
   return (
     <div>
-      <ConversionFormula
-        fromUnit={fromUnit}
-        toUnit={toUnit}
-        conversionRate={conversionRate}
-      />
       <h2>
         {startingValue} {fromUnit} is
       </h2>
