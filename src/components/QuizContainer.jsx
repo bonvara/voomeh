@@ -6,27 +6,32 @@ import QuizHistory from "./QuizHistory";
 import { useState } from "react";
 
 function QuizContainer() {
-  const fromUnit = "AMD";
-  const toUnit = "AMD";
+  const [fromUnit, setFromUnit] = useState("AMD");
+  const [toUnit, setToUnit] = useState("RUB");
   const conversionRate = 1;
   const [accuracyHistory, setAccuracyHistory] = useState([]);
   const [isQuizStarted, setIsQuizStarted] = useState(false);
+
+  const handleUnitChange = (type, value) => {
+    if (type === 'from') {
+      setFromUnit(value);
+    } else {
+      setToUnit(value);
+    }
+  };
 
   return (
     <div className="quiz-container">
       <h1>Conversion Quiz</h1>
       <h3>Train your intuitive converter</h3>
-      <QuizControls />
+      <QuizControls onUnitChange={handleUnitChange} />
       <ConversionFormula
         fromUnit={fromUnit}
         toUnit={toUnit}
         conversionRate={conversionRate}
       />
       {!isQuizStarted ? (
-        <button
-          className="start-button"
-          onClick={() => setIsQuizStarted(true)}
-        >
+        <button className="start-button" onClick={() => setIsQuizStarted(true)}>
           Start Quiz
         </button>
       ) : (

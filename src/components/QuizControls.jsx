@@ -1,9 +1,35 @@
 import "./QuizControls.css";
 import { getAvailableCurrencies } from "../utils/currency.js";
+import { useState } from 'react';
 
-function QuizControls() {
+function CurrencySelect({ defaultValue, onChange }) {
   const currencies = getAvailableCurrencies();
-  
+
+  return (
+    <select defaultValue={defaultValue} onChange={onChange}>
+      {currencies.map((currency) => (
+        <option key={currency} value={currency}>
+          {currency}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+function QuizControls({ onUnitChange }) {
+  const [fromUnit, setFromUnit] = useState("AMD");
+  const [toUnit, setToUnit] = useState("RUB");
+
+  const handleUnitChange = (type) => (value) => {
+    if (type === 'from') {
+      setFromUnit(value);
+      onUnitChange('from', value);
+    } else {
+      setToUnit(value);
+      onUnitChange('to', value);
+    }
+  };
+
   return (
     <div className="quiz-controls">
       <div className="conversion-type-selector">
@@ -12,21 +38,15 @@ function QuizControls() {
         </select>
       </div>
       <div className="unit-selectors">
-        <select defaultValue="AMD">
-          {currencies.map((currency) => (
-            <option key={currency} value={currency}>
-              {currency}
-            </option>
-          ))}
-        </select>
+        <CurrencySelect 
+          defaultValue={fromUnit}
+          onChange={(e) => handleUnitChange('from')(e.target.value)}
+        />
         <span className="to-label">to</span>
-        <select defaultValue="RUB">
-          {currencies.map((currency) => (
-            <option key={currency} value={currency}>
-              {currency}
-            </option>
-          ))}
-        </select>
+        <CurrencySelect 
+          defaultValue={toUnit}
+          onChange={(e) => handleUnitChange('to')(e.target.value)}
+        />
       </div>
     </div>
   );
