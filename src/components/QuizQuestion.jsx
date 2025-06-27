@@ -50,23 +50,22 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
   return (
     <div>
       <div className="answer-group">
+        {/* Row 1 */}
         <h2>
           {startingValue} {fromUnit} is:
         </h2>
-        <h2>
-          <input
-            type="text"
-            ref={inputRef}
-            onKeyDown={handleKeyPress}
-            readOnly={!!feedback}
-          />{" "}
-          {toUnit}
-        </h2>
+        <input
+          type="text"
+          ref={inputRef}
+          onKeyDown={handleKeyPress}
+          readOnly={!!feedback}
+        />{" "}
+        <h2>{toUnit}</h2>
+        {/* Row 2 */}
         <h2>Correct:</h2>
-        <h2>
-          <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
-          {toUnit}
-        </h2>
+        <h2>{feedback ? feedback.correct : "?"}</h2>
+        <h2>{toUnit}</h2>
+        {/* Row 3 */}
         <h2>Accuracy:</h2>
         <h2
           className={`accuracy ${
