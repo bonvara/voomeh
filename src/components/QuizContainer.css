@@ -1,0 +1,20 @@
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.conversion-type-selector {
+  margin: 1rem 0;
+}
+
+.conversion-type-selector select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: white;
+  width: 200px;
+}
