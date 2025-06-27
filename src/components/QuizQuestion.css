@@ -1,8 +1,8 @@
 .answer-group {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: min-content auto min-content;
   text-align: right;
-  /* gap: 1rem; */
+  gap: 1rem;
 }
 
 /* Override text-align for right column to keep it left-aligned */
@@ -13,12 +13,12 @@
 input {
   align-self: center;
   justify-self: right;
-  font-size: 2rem;
 }
 
 .answer-group h2 {
   margin: 0.25rem 0;
   padding: 0.25rem;
+  white-space: nowrap;
 }
 
 .quiz-box {
