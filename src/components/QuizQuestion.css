@@ -7,7 +7,7 @@
 }
 
 /* Override text-align for right column to keep it left-aligned */
-.answer-group h2:nth-child(2n) {
+.answer-group h2:nth-child(3n) {
   text-align: left;
 }
 
