@@ -35,21 +35,25 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
     inputRef.current.focus();
   }, []);
 
+  const handleFirstAnswer = () => {
+    const userAnswer = parseFloat(inputRef.current.value);
+    if (!isNaN(userAnswer)) {
+      const difference = Math.abs(userAnswer - correctAnswer);
+      const maxDifference = Math.max(userAnswer, correctAnswer);
+      const accuracy = ((maxDifference - difference) / maxDifference) * 100;
+      setFeedback({
+        correct: correctAnswer.toFixed(2),
+        accuracy: Math.round(accuracy) + "%",
+      });
+    }
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      const userAnswer = parseFloat(e.target.value);
-      if (!isNaN(userAnswer)) {
-        if (!feedback) {
-          const difference = Math.abs(userAnswer - correctAnswer);
-          const maxDifference = Math.max(userAnswer, correctAnswer);
-          const accuracy = ((maxDifference - difference) / maxDifference) * 100;
-          setFeedback({
-            correct: correctAnswer.toFixed(2),
-            accuracy: Math.round(accuracy) + "%",
-          });
-        } else {
-          handleNext();
-        }
+      if (!feedback) {
+        handleFirstAnswer();
+      } else {
+        handleNext();
       }
     }
   };
@@ -78,6 +82,11 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           />{" "}
           {toUnit}
         </h2>
+        {!feedback && (
+          <button className="show-answer-button" onClick={handleFirstAnswer}>
+            Show Answer
+          </button>
+        )}
         {feedback && (
           <>
             <div className="feedback">
