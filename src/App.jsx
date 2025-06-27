@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
 import Timer from "./components/Timer";
+import ConversionFormula from "./components/ConversionFormula";
 
 function App() {
   const fromUnit = "AMD";
@@ -25,12 +26,6 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
     () => Math.floor(Math.random() * 100) + 1
   );
   const correctAnswer = startingValue * conversionRate;
-  const conversionFormula =
-    conversionRate < 1
-      ? `${toUnit} = ${fromUnit} / ${parseFloat(
-          (1 / conversionRate).toFixed(2)
-        )}`
-      : `${toUnit} = ${fromUnit} * ${parseFloat(conversionRate.toFixed(2))}`;
 
   useEffect(() => {
     inputRef.current.focus();
@@ -72,7 +67,11 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
       <h1>Conversion Quiz</h1>
       <h3>Train your intuitive converter</h3>
       <div className="measurement-box">
-        <p>{conversionFormula}</p>
+        <ConversionFormula
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          conversionRate={conversionRate}
+        />
         <h2>
           {startingValue} {fromUnit} is
         </h2>

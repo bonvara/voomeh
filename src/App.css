@@ -6,8 +6,17 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
   text-align: center;
+}
+
+.conversion-formula {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 .measurement-box {
