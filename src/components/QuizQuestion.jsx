@@ -21,11 +21,13 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
     }
     const difference = Math.abs(userAnswer - correctAnswer);
     const maxDifference = Math.max(userAnswer, correctAnswer);
-    const accuracy = ((maxDifference - difference) / maxDifference) * 100;
-    console.log(accuracy);
+    const accuracyScore = Math.round(
+      ((maxDifference - difference) / maxDifference) * 100
+    );
+    console.log(accuracyScore);
     setFeedback({
       correct: correctAnswer.toFixed(2),
-      accuracy: Math.round(accuracy),
+      accuracyScore: accuracyScore,
     });
   };
 
@@ -69,16 +71,16 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
         <h2>Accuracy:</h2>
         <h2
           className={`accuracy ${
-            feedback?.accuracy >= 90
+            feedback?.accuracyScore >= 90
               ? "excellent"
-              : feedback?.accuracy >= 70
+              : feedback?.accuracyScore >= 70
               ? "good"
-              : feedback?.accuracy >= 50
+              : feedback?.accuracyScore >= 50
               ? "needs-improvement"
               : "poor"
           }`}
         >
-          {feedback ? `${feedback.accuracy}%` : "?"}
+          {feedback ? `${feedback.accuracyScore}%` : "?"}
         </h2>
       </div>
       {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
