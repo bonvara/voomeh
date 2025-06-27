@@ -46,8 +46,14 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           correct: correctAnswer.toFixed(2),
           accuracy: Math.round(accuracy) + "%",
         });
+        setNumber1(Math.floor(Math.random() * 100) + 1);
       }
     }
+  };
+
+  const handleNext = () => {
+    setNumber1(Math.floor(Math.random() * 100) + 1);
+    setFeedback(null);
   };
 
   return (
@@ -71,6 +77,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
             <p>Accuracy: {feedback.accuracy}</p>
           </div>
         )}
+        <button className="next-button" onClick={handleNext}>Next</button>
       </div>
     </div>
   );
