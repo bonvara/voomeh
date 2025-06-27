@@ -2,7 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
 import "./QuizQuestion.css";
 
-export default function QuizQuestion({ fromUnit, toUnit, conversionRate, onAccuracyChange }) {
+export default function QuizQuestion({
+  fromUnit,
+  toUnit,
+  conversionRate,
+  onAccuracyChange,
+}) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [startingValue, setStartingValue] = useState(
@@ -26,7 +31,7 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate, onAccur
     );
     console.log(accuracyScore);
     setFeedback({
-      correct: correctAnswer.toFixed(2),
+      correct: correctAnswer,
       accuracyScore: accuracyScore,
     });
     onAccuracyChange?.(accuracyScore); // Pass accuracyScore to parent
@@ -69,7 +74,7 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate, onAccur
         <h2>{feedback ? feedback.correct : "?"}</h2>
         <h2>{toUnit}</h2>
         {/* Row 3 */}
-        <h2>Accuracy:</h2>
+        <h2>Score:</h2>
         <h2
           className={`accuracy ${
             feedback?.accuracyScore >= 90
