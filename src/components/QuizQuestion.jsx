@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
 import "./QuizQuestion.css";
 
-export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
+export default function QuizQuestion({ fromUnit, toUnit, conversionRate, onAccuracyChange }) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [startingValue, setStartingValue] = useState(
@@ -29,6 +29,7 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
       correct: correctAnswer.toFixed(2),
       accuracyScore: accuracyScore,
     });
+    onAccuracyChange?.(accuracyScore); // Pass accuracyScore to parent
   };
 
   const handleKeyPress = (e) => {

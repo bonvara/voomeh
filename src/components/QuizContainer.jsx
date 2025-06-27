@@ -3,13 +3,13 @@ import ConversionFormula from "./ConversionFormula";
 import QuizQuestion from "./QuizQuestion";
 import QuizControls from "./QuizControls";
 import QuizHistory from "./QuizHistory";
+import { useState } from "react";
 
 function QuizContainer() {
   const fromUnit = "AMD";
-  //   const toUnit = "RUB";
   const toUnit = "AMD";
-  //   const conversionRate = 0.20491803278688525;
   const conversionRate = 1;
+  const [accuracyHistory, setAccuracyHistory] = useState([]);
 
   return (
     <div className="quiz-container">
@@ -25,8 +25,11 @@ function QuizContainer() {
         fromUnit={fromUnit}
         toUnit={toUnit}
         conversionRate={conversionRate}
+        onAccuracyChange={(accuracyScore) => {
+          setAccuracyHistory((prev) => [...prev, accuracyScore]);
+        }}
       />
-      <QuizHistory />
+      <QuizHistory accuracyHistory={accuracyHistory} />
     </div>
   );
 }
