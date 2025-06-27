@@ -6,8 +6,8 @@ function QuizHistory({ accuracyHistory }) {
     accuracyHistory.reduce((acc, val) => acc + val, 0) / accuracyHistory.length;
   return (
     <div className="quiz-history">
-      <h2>Attempts: {attempts}</h2>
       <h2>Average Accuracy: {averageAccuracy.toFixed(2)}%</h2>
+      <h2>№ attempts: {attempts}</h2>
       <h2>History:</h2>
       <div className="history-list">
         {accuracyHistory.map((accuracy, index) => (
