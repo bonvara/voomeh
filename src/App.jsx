@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function App() {
   const fromUnit = "inches";
@@ -18,24 +18,29 @@ function App() {
 }
 
 function Quiz({ fromUnit, toUnit, conversionRate }) {
+  const inputRef = useRef(null);
   const number1 = Math.floor(Math.random() * 100) + 1;
   const correctAnswer = number1 * conversionRate;
+  const conversionFormula =
+    conversionRate < 1
+      ? `${toUnit} = ${fromUnit} / ${parseFloat(
+          (1 / conversionRate).toFixed(2)
+        )}`
+      : `${toUnit} = ${fromUnit} * ${parseFloat(conversionRate.toFixed(2))}`;
 
-  const conversionFormula = conversionRate < 1 
-    ? `${toUnit} = ${fromUnit} / ${1/conversionRate}`
-    : `${toUnit} = ${fromUnit} * ${conversionRate}`;
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <div className="container">
       <div className="measurement-box">
-        <p>
-          {conversionFormula}
-        </p>
+        <p>{conversionFormula}</p>
         <h2>
           {number1} {fromUnit} is
         </h2>
         <h2>
-          <input type="text" /> {toUnit}
+          <input type="text" ref={inputRef} /> {toUnit}
         </h2>
       </div>
     </div>
