@@ -1,7 +1,8 @@
 import "./QuizContainer.css";
 import ConversionFormula from "./ConversionFormula";
+import QuizQuestion from "./QuizQuestion";
 
-function QuizContainer({ children }) {
+function QuizContainer() {
   const fromUnit = "RUB";
   const toUnit = "USD";
   const conversionRate = 0.013;
@@ -35,7 +36,12 @@ function QuizContainer({ children }) {
         toUnit={toUnit}
         conversionRate={conversionRate}
       />
-      <div className="quiz-box">{children}</div>
+
+      <QuizQuestion
+        fromUnit={fromUnit}
+        toUnit={toUnit}
+        conversionRate={conversionRate}
+      />
     </div>
   );
 }

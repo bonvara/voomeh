@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
-import "./Quiz.css";
+import "./QuizQuestion.css";
 
-export function Quiz({ fromUnit, toUnit, conversionRate }) {
+export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [startingValue, setStartingValue] = useState(
