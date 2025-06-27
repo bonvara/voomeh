@@ -10,6 +10,7 @@ function QuizContainer() {
   const toUnit = "AMD";
   const conversionRate = 1;
   const [accuracyHistory, setAccuracyHistory] = useState([]);
+  const [isQuizStarted, setIsQuizStarted] = useState(false);
 
   return (
     <div className="quiz-container">
@@ -21,14 +22,23 @@ function QuizContainer() {
         toUnit={toUnit}
         conversionRate={conversionRate}
       />
-      <QuizQuestion
-        fromUnit={fromUnit}
-        toUnit={toUnit}
-        conversionRate={conversionRate}
-        onAccuracyChange={(accuracyScore) => {
-          setAccuracyHistory((prev) => [...prev, accuracyScore]);
-        }}
-      />
+      {!isQuizStarted ? (
+        <button
+          className="start-button"
+          onClick={() => setIsQuizStarted(true)}
+        >
+          Start Quiz
+        </button>
+      ) : (
+        <QuizQuestion
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          conversionRate={conversionRate}
+          onAccuracyChange={(accuracyScore) => {
+            setAccuracyHistory((prev) => [...prev, accuracyScore]);
+          }}
+        />
+      )}
       <QuizHistory accuracyHistory={accuracyHistory} />
     </div>
   );
