@@ -18,11 +18,13 @@ function App() {
 }
 
 function Quiz({ fromUnit, toUnit, conversionRate }) {
+  const defaultTime = 5;
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [number1, setNumber1] = useState(
     () => Math.floor(Math.random() * 100) + 1
   );
+  const [timeLeft, setTimeLeft] = useState(defaultTime);
   const correctAnswer = number1 * conversionRate;
   const conversionFormula =
     conversionRate < 1
@@ -35,23 +37,41 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
     inputRef.current.focus();
   }, []);
 
-  const handleFirstAnswer = () => {
-    const userAnswer = parseFloat(inputRef.current.value);
-    if (!isNaN(userAnswer)) {
-      const difference = Math.abs(userAnswer - correctAnswer);
-      const maxDifference = Math.max(userAnswer, correctAnswer);
-      const accuracy = ((maxDifference - difference) / maxDifference) * 100;
-      setFeedback({
-        correct: correctAnswer.toFixed(2),
-        accuracy: Math.round(accuracy) + "%",
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev > 0) return prev - 1;
+        return 0;
       });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      handleAnswer();
     }
+  }, [timeLeft]);
+
+  const handleAnswer = () => {
+    let userAnswer = parseFloat(inputRef.current.value);
+    if (isNaN(userAnswer)) {
+      userAnswer = 0;
+    }
+    const difference = Math.abs(userAnswer - correctAnswer);
+    const maxDifference = Math.max(userAnswer, correctAnswer);
+    const accuracy = ((maxDifference - difference) / maxDifference) * 100;
+    setFeedback({
+      correct: correctAnswer.toFixed(2),
+      accuracy: Math.round(accuracy) + "%",
+    });
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       if (!feedback) {
-        handleFirstAnswer();
+        handleAnswer();
       } else {
         handleNext();
       }
@@ -61,6 +81,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
   const handleNext = () => {
     setNumber1(Math.floor(Math.random() * 100) + 1);
     setFeedback(null);
+    setTimeLeft(defaultTime);
     inputRef.current.value = "";
     inputRef.current.focus();
   };
@@ -83,8 +104,9 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           />{" "}
           {toUnit}
         </h2>
+        {!feedback && <div className="timer">Time left: {timeLeft}s</div>}
         {!feedback && (
-          <button className="show-answer-button" onClick={handleFirstAnswer}>
+          <button className="show-answer-button" onClick={handleAnswer}>
             Show Answer
           </button>
         )}
