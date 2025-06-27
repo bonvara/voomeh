@@ -65,8 +65,9 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
           <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
           {toUnit}
         </h2>
+        <h2>Accuracy:</h2>
+        <h2>{feedback ? feedback.accuracy : "?"}</h2>
       </div>
-
       {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
       {!feedback && (
         <button className="show-answer-button" onClick={handleAnswer}>
@@ -74,14 +75,9 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
         </button>
       )}
       {feedback && (
-        <>
-          <div className="feedback">
-            <p>Accuracy: {feedback.accuracy}</p>
-          </div>
-          <button className="next-button" onClick={handleNext}>
-            Next
-          </button>
-        </>
+        <button className="next-button" onClick={handleNext}>
+          Next
+        </button>
       )}
     </div>
   );
