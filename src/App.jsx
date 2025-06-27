@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
-import Timer from './components/Timer';
+import Timer from "./components/Timer";
 
 function App() {
   const fromUnit = "AMD";
@@ -21,10 +21,10 @@ function App() {
 function Quiz({ fromUnit, toUnit, conversionRate }) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
-  const [number1, setNumber1] = useState(
+  const [startingValue, setStartingValue] = useState(
     () => Math.floor(Math.random() * 100) + 1
   );
-  const correctAnswer = number1 * conversionRate;
+  const correctAnswer = startingValue * conversionRate;
   const conversionFormula =
     conversionRate < 1
       ? `${toUnit} = ${fromUnit} / ${parseFloat(
@@ -61,9 +61,8 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
   };
 
   const handleNext = () => {
-    setNumber1(Math.floor(Math.random() * 100) + 1);
+    setStartingValue(Math.floor(Math.random() * 100) + 1);
     setFeedback(null);
-    setTimeLeft(defaultTime);
     inputRef.current.value = "";
     inputRef.current.focus();
   };
@@ -75,7 +74,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
       <div className="measurement-box">
         <p>{conversionFormula}</p>
         <h2>
-          {number1} {fromUnit} is
+          {startingValue} {fromUnit} is
         </h2>
         <h2>
           <input
@@ -86,9 +85,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           />{" "}
           {toUnit}
         </h2>
-        {!feedback && (
-          <Timer defaultTime={7} onTimeUp={handleAnswer} />
-        )}
+        {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
         {!feedback && (
           <button className="show-answer-button" onClick={handleAnswer}>
             Show Answer
