@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import "./Timer.css";
 
 const Timer = ({ defaultTime, onTimeUp }) => {
   const [timeLeft, setTimeLeft] = useState(defaultTime);
@@ -20,9 +21,7 @@ const Timer = ({ defaultTime, onTimeUp }) => {
     }
   }, [timeLeft, onTimeUp]);
 
-  return (
-    <div className="timer">Time left: {timeLeft}s</div>
-  );
+  return <div className="timer">Time left: {timeLeft}s</div>;
 };
 
 export default Timer;

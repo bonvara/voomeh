@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
 import ConversionFormula from "./ConversionFormula";
+import "./Quiz.css";
 
 export function Quiz({ fromUnit, toUnit, conversionRate }) {
   const inputRef = useRef(null);

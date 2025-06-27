@@ -1,149 +1,11 @@
 body {
-  display:flex;
+  display: flex;
   justify-content: center;
-}
-
-.quiz-container {
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
-  text-align: center;
-}
-
-.conversion-formula {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #2a2a2a;
-  border-radius: 5px;
-  font-size: 1.2em;
-  font-weight: 500;
-}
-
-.quiz-box {
-  background-color: #1a1a1a;
+  min-height: 100vh;
+  background-color: #121212;
   color: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
-  display: flex;
-  gap: 1rem;
-  margin: 1rem 0;
-  justify-content: center;
-}
-
-.input-group {
-  margin: 1rem 0;
-  display: flex;
-  gap: 0.5rem;
-}
-
-input {
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: right;
-  width: 100px;
-  margin-right: 0.5rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.next-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.next-button:hover {
-  background-color: #45a049;
-}
-
-.timer {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
-}
-
-.show-answer-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.show-answer-button:hover {
-  background-color: #0056b3;
-}
-
-.result {
-  margin: 1rem 0;
-  padding: 1rem;
-  background-color: #e8f5e9;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.stats {
-  margin: 1rem 0;
-  color: #666;
-}
-
-.accuracy {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.accuracy.excellent {
-  color: #28a745;
-}
-
-.accuracy.good {
-  color: #ffc107;
-}
-
-.accuracy.needs-improvement {
-  color: #dc3545;
-}
-
-.new-number-btn {
-  margin-top: 1rem;
-  background-color: #28a745;
-}
-
-.new-number-btn:hover {
-  background-color: #218838;
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin: 1rem 0;
-  color: #0056b3;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -159,3 +21,7 @@ h2 {
 .read-the-docs {
   color: #888;
 }
+
+/* App-specific styles */
+
+/* Empty for now - add App-specific styles here */
