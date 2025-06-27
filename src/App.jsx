@@ -50,6 +50,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
 
   return (
     <div className="container">
+      <h1>Conversion Quiz</h1>
       <div className="measurement-box">
         <p>{conversionFormula}</p>
         <h2>
