@@ -54,6 +54,8 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
   const handleNext = () => {
     setNumber1(Math.floor(Math.random() * 100) + 1);
     setFeedback(null);
+    inputRef.current.value = '';
+    inputRef.current.focus();
   };
 
   return (
