@@ -1,20 +1,3 @@
-.answer-group {
-  display: grid;
-  grid-template-columns: min-content auto min-content;
-  text-align: right;
-  gap: 1rem;
-}
-
-/* Override text-align for right column to keep it left-aligned */
-.answer-group h2:nth-child(3n) {
-  text-align: left;
-}
-
-input {
-  align-self: center;
-  justify-self: right;
-}
-
 .answer-group h2 {
   margin: 0.25rem 0;
   padding: 0.25rem;
@@ -46,6 +29,8 @@ input {
 }
 
 input {
+  align-self: center;
+  justify-self: right;
   padding: 0.5rem;
   font-size: 1.5rem;
   border: 1px solid #ddd;
@@ -72,7 +57,7 @@ button:hover {
 .next-button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -157,6 +142,13 @@ h2 {
   color: #0056b3;
 }
 
+.answer-group {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  text-align: right;
+  gap: 1rem;
+}
+
 /* Larger font for the starting value */
 .answer-group h2:first-child {
   font-size: 2.2rem;
@@ -165,6 +157,11 @@ h2 {
 /* Larger font for the input field */
 .answer-group h2:nth-child(3) {
   font-size: 2rem;
+}
+
+/* Override text-align for right column to keep it left-aligned */
+.answer-group h2:nth-child(3n) {
+  text-align: left;
 }
 
 /* Larger font for the accuracy display */
