@@ -2,9 +2,9 @@ import "./App.css";
 import { useState, useRef, useEffect } from "react";
 
 function App() {
-  const fromUnit = "inches";
-  const toUnit = "cm";
-  const conversionRate = 2.54;
+  const fromUnit = "AMD";
+  const toUnit = "RUB";
+  const conversionRate = 0.20491803278688525;
 
   return (
     <>
@@ -18,7 +18,7 @@ function App() {
 }
 
 function Quiz({ fromUnit, toUnit, conversionRate }) {
-  const defaultTime = 5;
+  const defaultTime = 7;
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [number1, setNumber1] = useState(
