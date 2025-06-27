@@ -20,7 +20,9 @@ function App() {
 function Quiz({ fromUnit, toUnit, conversionRate }) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
-  const number1 = Math.floor(Math.random() * 100) + 1;
+  const [number1, setNumber1] = useState(
+    () => Math.floor(Math.random() * 100) + 1
+  );
   const correctAnswer = number1 * conversionRate;
   const conversionFormula =
     conversionRate < 1
