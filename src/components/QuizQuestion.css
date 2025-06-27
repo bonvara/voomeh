@@ -1,3 +1,8 @@
+.answer-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .quiz-box {
   background-color: #1a1a1a;
   color: #ffffff;

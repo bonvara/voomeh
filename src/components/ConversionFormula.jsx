@@ -3,10 +3,10 @@ import React from "react";
 function ConversionFormula({ fromUnit, toUnit, conversionRate }) {
   const formula =
     conversionRate < 1
-      ? `${toUnit} = ${fromUnit} / ${parseFloat(
+      ? `${fromUnit} / ${parseFloat(
           (1 / conversionRate).toFixed(2)
-        )}`
-      : `${toUnit} = ${fromUnit} x ${parseFloat(conversionRate.toFixed(2))}`;
+        )} = ${toUnit}`
+      : `${fromUnit} x ${parseFloat(conversionRate.toFixed(2))} = ${toUnit}`;
 
   return (
     <div className="conversion-formula">

@@ -47,18 +47,26 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
 
   return (
     <div>
-      <h2>
-        {startingValue} {fromUnit} is
-      </h2>
-      <h2>
-        <input
-          type="text"
-          ref={inputRef}
-          onKeyDown={handleKeyPress}
-          readOnly={!!feedback}
-        />{" "}
-        {toUnit}
-      </h2>
+      <div className="answer-group">
+        <h2>
+          {startingValue} {fromUnit} is
+        </h2>
+        <h2>
+          <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
+          {toUnit}
+        </h2>
+        <h2>Your answer:</h2>
+        <h2>
+          <input
+            type="text"
+            ref={inputRef}
+            onKeyDown={handleKeyPress}
+            readOnly={!!feedback}
+          />{" "}
+          {toUnit}
+        </h2>
+      </div>
+
       {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
       {!feedback && (
         <button className="show-answer-button" onClick={handleAnswer}>
@@ -68,10 +76,6 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
       {feedback && (
         <>
           <div className="feedback">
-            <p>Answer:</p>
-            <p>
-              {feedback.correct} {toUnit}
-            </p>
             <p>Accuracy: {feedback.accuracy}</p>
           </div>
           <button className="next-button" onClick={handleNext}>
