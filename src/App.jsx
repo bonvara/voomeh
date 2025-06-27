@@ -54,7 +54,7 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
   const handleNext = () => {
     setNumber1(Math.floor(Math.random() * 100) + 1);
     setFeedback(null);
-    inputRef.current.value = '';
+    inputRef.current.value = "";
     inputRef.current.focus();
   };
 
@@ -67,7 +67,12 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           {number1} {fromUnit} is
         </h2>
         <h2>
-          <input type="text" ref={inputRef} onKeyDown={handleKeyPress} />{" "}
+          <input
+            type="text"
+            ref={inputRef}
+            onKeyDown={handleKeyPress}
+            readOnly={!!feedback}
+          />{" "}
           {toUnit}
         </h2>
         {feedback && (
@@ -79,7 +84,9 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
             <p>Accuracy: {feedback.accuracy}</p>
           </div>
         )}
-        <button className="next-button" onClick={handleNext}>Next</button>
+        <button className="next-button" onClick={handleNext}>
+          Next
+        </button>
       </div>
     </div>
   );
