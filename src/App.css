@@ -3,7 +3,7 @@ body {
   justify-content: center;
 }
 
-.container {
+.quiz-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -19,7 +19,7 @@ body {
   font-weight: 500;
 }
 
-.measurement-box {
+.quiz-box {
   background-color: #1a1a1a;
   color: #ffffff;
   padding: 2rem;
