@@ -49,13 +49,8 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
     <div>
       <div className="answer-group">
         <h2>
-          {startingValue} {fromUnit} is
+          {startingValue} {fromUnit} is:
         </h2>
-        <h2>
-          <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
-          {toUnit}
-        </h2>
-        <h2>Your answer:</h2>
         <h2>
           <input
             type="text"
@@ -63,6 +58,11 @@ export default function QuizQuestion({ fromUnit, toUnit, conversionRate }) {
             onKeyDown={handleKeyPress}
             readOnly={!!feedback}
           />{" "}
+          {toUnit}
+        </h2>
+        <h2>Correct answer:</h2>
+        <h2>
+          <input readOnly={true} value={feedback ? feedback.correct : "?"} />{" "}
           {toUnit}
         </h2>
       </div>
