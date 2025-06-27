@@ -2,6 +2,7 @@ import "./QuizContainer.css";
 import ConversionFormula from "./ConversionFormula";
 import QuizQuestion from "./QuizQuestion";
 import QuizControls from "./QuizControls";
+import QuizHistory from "./QuizHistory";
 
 function QuizContainer() {
   const fromUnit = "AMD";
@@ -25,6 +26,7 @@ function QuizContainer() {
         toUnit={toUnit}
         conversionRate={conversionRate}
       />
+      <QuizHistory />
     </div>
   );
 }
