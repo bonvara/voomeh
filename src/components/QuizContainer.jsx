@@ -8,12 +8,24 @@ function QuizContainer({ children }) {
       <div className="conversion-type-selector">
         <select>
           <option value="currency">Currency</option>
-          <option value="length">Length</option>
         </select>
       </div>
-      <div className="quiz-box">
-        {children}
+      <div className="unit-selectors">
+        <select>
+          <option value="RUB">RUB</option>
+          <option value="AMD">AMD</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+        <span className="to-label">to</span>
+        <select>
+          <option value="RUB">RUB</option>
+          <option value="AMD">AMD</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
       </div>
+      <div className="quiz-box">{children}</div>
     </div>
   );
 }

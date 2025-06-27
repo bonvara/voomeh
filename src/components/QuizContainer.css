@@ -18,3 +18,26 @@
   color: white;
   width: 200px;
 }
+
+.unit-selectors {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.unit-selectors select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: white;
+  width: 150px;
+}
+
+.to-label {
+  color: white;
+  font-size: 1rem;
+}
