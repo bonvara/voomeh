@@ -79,17 +79,19 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           {toUnit}
         </h2>
         {feedback && (
-          <div className="feedback">
-            <p>Answer:</p>
-            <p>
-              {feedback.correct} {toUnit}
-            </p>
-            <p>Accuracy: {feedback.accuracy}</p>
-          </div>
+          <>
+            <div className="feedback">
+              <p>Answer:</p>
+              <p>
+                {feedback.correct} {toUnit}
+              </p>
+              <p>Accuracy: {feedback.accuracy}</p>
+            </div>
+            <button className="next-button" onClick={handleNext}>
+              Next
+            </button>
+          </>
         )}
-        <button className="next-button" onClick={handleNext}>
-          Next
-        </button>
       </div>
     </div>
   );
