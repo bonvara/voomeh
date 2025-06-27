@@ -39,13 +39,17 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
     if (e.key === "Enter") {
       const userAnswer = parseFloat(e.target.value);
       if (!isNaN(userAnswer)) {
-        const difference = Math.abs(userAnswer - correctAnswer);
-        const maxDifference = Math.max(userAnswer, correctAnswer);
-        const accuracy = ((maxDifference - difference) / maxDifference) * 100;
-        setFeedback({
-          correct: correctAnswer.toFixed(2),
-          accuracy: Math.round(accuracy) + "%",
-        });
+        if (!feedback) {
+          const difference = Math.abs(userAnswer - correctAnswer);
+          const maxDifference = Math.max(userAnswer, correctAnswer);
+          const accuracy = ((maxDifference - difference) / maxDifference) * 100;
+          setFeedback({
+            correct: correctAnswer.toFixed(2),
+            accuracy: Math.round(accuracy) + "%",
+          });
+        } else {
+          handleNext();
+        }
       }
     }
   };
