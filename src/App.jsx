@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 function App() {
   const fromUnit = "inches";
   const toUnit = "cm";
-  const conversionRate = 0.39370078740157477;
+  const conversionRate = 2.54;
 
   return (
     <>
@@ -19,6 +19,7 @@ function App() {
 
 function Quiz({ fromUnit, toUnit, conversionRate }) {
   const inputRef = useRef(null);
+  const [feedback, setFeedback] = useState(null);
   const number1 = Math.floor(Math.random() * 100) + 1;
   const correctAnswer = number1 * conversionRate;
   const conversionFormula =
@@ -32,6 +33,21 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
     inputRef.current.focus();
   }, []);
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      const userAnswer = parseFloat(e.target.value);
+      if (!isNaN(userAnswer)) {
+        const difference = Math.abs(userAnswer - correctAnswer);
+        const maxDifference = Math.max(userAnswer, correctAnswer);
+        const accuracy = ((maxDifference - difference) / maxDifference) * 100;
+        setFeedback({
+          correct: correctAnswer.toFixed(2),
+          accuracy: Math.round(accuracy) + "%",
+        });
+      }
+    }
+  };
+
   return (
     <div className="container">
       <div className="measurement-box">
@@ -40,8 +56,18 @@ function Quiz({ fromUnit, toUnit, conversionRate }) {
           {number1} {fromUnit} is
         </h2>
         <h2>
-          <input type="text" ref={inputRef} /> {toUnit}
+          <input type="text" ref={inputRef} onKeyDown={handleKeyPress} />{" "}
+          {toUnit}
         </h2>
+        {feedback && (
+          <div className="feedback">
+            <p>Answer:</p>
+            <p>
+              {feedback.correct} {toUnit}
+            </p>
+            <p>Accuracy: {feedback.accuracy}</p>
+          </div>
+        )}
       </div>
     </div>
   );
