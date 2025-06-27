@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
 import "./QuizQuestion.css";
+import { generateRandomNumber, calculateAccuracy } from "../utils/numbers";
 
 export default function QuizQuestion({
   fromUnit,
@@ -11,7 +12,7 @@ export default function QuizQuestion({
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
   const [startingValue, setStartingValue] = useState(
-    () => Math.floor(Math.random() * 100) + 1
+    () => generateRandomNumber(1, 100)
   );
   const correctAnswer = startingValue * conversionRate;
 
@@ -20,18 +21,11 @@ export default function QuizQuestion({
   }, []);
 
   const handleAnswer = () => {
-    let userAnswer = parseFloat(inputRef.current.value);
-    if (isNaN(userAnswer)) {
-      userAnswer = 0;
-    }
-    const difference = Math.abs(userAnswer - correctAnswer);
-    const maxDifference = Math.max(userAnswer, correctAnswer);
-    const accuracyScore = Math.round(
-      ((maxDifference - difference) / maxDifference) * 100
-    );
+    const userAnswer = parseFloat(inputRef.current.value) || 0;
+    const accuracyScore = calculateAccuracy(userAnswer, correctAnswer);
     console.log(accuracyScore);
     setFeedback({
-      correct: correctAnswer,
+      correct: correctAnswer.toFixed(2),
       accuracyScore: accuracyScore,
     });
     onAccuracyChange?.(accuracyScore); // Pass accuracyScore to parent
