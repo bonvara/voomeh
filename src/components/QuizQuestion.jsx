@@ -11,8 +11,8 @@ export default function QuizQuestion({
 }) {
   const inputRef = useRef(null);
   const [feedback, setFeedback] = useState(null);
-  const [startingValue, setStartingValue] = useState(
-    () => generateRandomNumber(1, 100)
+  const [startingValue, setStartingValue] = useState(() =>
+    generateRandomNumber(10, 3000)
   );
   const correctAnswer = startingValue * conversionRate;
 
@@ -43,7 +43,7 @@ export default function QuizQuestion({
   };
 
   const handleNext = () => {
-    setStartingValue(Math.floor(Math.random() * 100) + 1);
+    setStartingValue(() => generateRandomNumber(10, 3000));
     setFeedback(null);
     inputRef.current.value = "";
     inputRef.current.focus();
@@ -83,7 +83,7 @@ export default function QuizQuestion({
           {feedback ? `${feedback.accuracyScore}%` : "?"}
         </h2>
       </div>
-      {!feedback && <Timer defaultTime={7} onTimeUp={handleAnswer} />}
+      {!feedback && <Timer defaultTime={12} onTimeUp={handleAnswer} />}
       {!feedback && (
         <button className="show-answer-button" onClick={handleAnswer}>
           Show Answer

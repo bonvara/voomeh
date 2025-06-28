@@ -4,20 +4,24 @@ import QuizQuestion from "./QuizQuestion";
 import QuizControls from "./QuizControls";
 import QuizHistory from "./QuizHistory";
 import { useState } from "react";
+import { convertCurrency } from "../utils/currency.js";
 
 function QuizContainer() {
-  const [fromUnit, setFromUnit] = useState("AMD");
+  const [fromUnit, setFromUnit] = useState("RUB");
   const [toUnit, setToUnit] = useState("RUB");
-  const conversionRate = 1;
+  const [conversionRate, setConversionRate] = useState(1);
   const [accuracyHistory, setAccuracyHistory] = useState([]);
   const [isQuizStarted, setIsQuizStarted] = useState(false);
 
-  const handleUnitChange = (type, value) => {
-    if (type === 'from') {
+  const handleUnitChange = async (type, value) => {
+    if (type === "from") {
       setFromUnit(value);
+      setConversionRate(await convertCurrency(value, toUnit));
     } else {
       setToUnit(value);
+      setConversionRate(await convertCurrency(fromUnit, value));
     }
+    console.log(fromUnit, toUnit, conversionRate);
   };
 
   return (
